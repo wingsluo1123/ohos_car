@@ -1,0 +1,14 @@
+import("//build/ohos.gni")
+
+group("my_samples"){
+    deps = [
+        #"hello_sample:hello_sample",
+        "ohos_car:test_serial",
+        # "tcp_client:tcp_client",
+        # "tcp_server:tcp_server",
+        # "test_gpio_ex:test_gpio_ex",
+        # "test_imu_ex:test_imu_ex",
+        # "test_serial_ex:test_serial_ex",
+        #"rk3588_ldlidar:ldlidar_demo"
+    ]
+}

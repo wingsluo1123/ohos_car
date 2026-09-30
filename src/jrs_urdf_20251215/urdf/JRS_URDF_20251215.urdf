@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="JRS_URDF_20251215">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0054998 0.00070291 0.059205"
+        rpy="0 0 0" />
+      <mass
+        value="3.5886" />
+      <inertia
+        ixx="0.014112"
+        ixy="-7.4583E-07"
+        ixz="1.0616E-05"
+        iyy="0.019988"
+        iyz="-4.2557E-06"
+        izz="0.032931" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="ORIENT_LEFT_FRONT_LINK">
+    <inertial>
+      <origin
+        xyz="0 -0.0099854 -0.059895"
+        rpy="0 0 0" />
+      <mass
+        value="0.068757" />
+      <inertia
+        ixx="3.9839E-05"
+        ixy="1.4896E-22"
+        ixz="1.7338E-22"
+        iyy="3.3827E-05"
+        iyz="4.6998E-06"
+        izz="1.4125E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/ORIENT_LEFT_FRONT_LINK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/ORIENT_LEFT_FRONT_LINK.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ORIENT_LEFT_FRONT_JOINT"
+    type="revolute">
+    <origin
+      xyz="0.14 0.096 0.0959"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="ORIENT_LEFT_FRONT_LINK" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0.5236"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="WHEEL_LEFT_FRONT_LINK">
+    <inertial>
+      <origin
+        xyz="-7.5771E-06 -0.027483 1.198E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.29567" />
+      <inertia
+        ixx="0.00031004"
+        ixy="2.3721E-09"
+        ixz="1.6252E-08"
+        iyy="0.0005043"
+        iyz="-3.4814E-09"
+        izz="0.00031012" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/WHEEL_LEFT_FRONT_LINK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/WHEEL_LEFT_FRONT_LINK.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="WHEEL_LEFT_FRONT_JOINT"
+    type="continuous">
+    <origin
+      xyz="0 0.069002 -0.1012"
+      rpy="0 0 0" />
+    <parent
+      link="ORIENT_LEFT_FRONT_LINK" />
+    <child
+      link="WHEEL_LEFT_FRONT_LINK" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="ORIENT_LEFT_BACK_LINK">
+    <inertial>
+      <origin
+        xyz="0 -0.0099854 -0.059895"
+        rpy="0 0 0" />
+      <mass
+        value="0.068757" />
+      <inertia
+        ixx="3.9839E-05"
+        ixy="-1.1516E-21"
+        ixz="6.8204E-21"
+        iyy="3.3827E-05"
+        iyz="4.6998E-06"
+        izz="1.4125E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/ORIENT_LEFT_BACK_LINK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/ORIENT_LEFT_BACK_LINK.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ORIENT_LEFT_BACK_JOINT"
+    type="revolute">
+    <origin
+      xyz="-0.14 0.096 0.0959"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="ORIENT_LEFT_BACK_LINK" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.5236"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="WHEEL_LEFT_BACK_LINK">
+    <inertial>
+      <origin
+        xyz="-7.5775E-06 -0.027483 1.1971E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.29567" />
+      <inertia
+        ixx="0.00031004"
+        ixy="2.3746E-09"
+        ixz="1.625E-08"
+        iyy="0.0005043"
+        iyz="-3.476E-09"
+        izz="0.00031012" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/WHEEL_LEFT_BACK_LINK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/WHEEL_LEFT_BACK_LINK.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="WHEEL_LEFT_BACK_JOINT"
+    type="continuous">
+    <origin
+      xyz="0 0.0690016176085788 -0.1012"
+      rpy="0 0 0" />
+    <parent
+      link="ORIENT_LEFT_BACK_LINK" />
+    <child
+      link="WHEEL_LEFT_BACK_LINK" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="ORIENT_RIGHT_FRONT_LINK">
+    <inertial>
+      <origin
+        xyz="-2.7756E-17 0.0099854 -0.059895"
+        rpy="0 0 0" />
+      <mass
+        value="0.068757" />
+      <inertia
+        ixx="3.9839E-05"
+        ixy="-5.2005E-22"
+        ixz="-4.5492E-21"
+        iyy="3.3827E-05"
+        iyz="-4.6998E-06"
+        izz="1.4125E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/ORIENT_RIGHT_FRONT_LINK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/ORIENT_RIGHT_FRONT_LINK.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ORIENT_RIGHT_FRONT_JOINT"
+    type="revolute">
+    <origin
+      xyz="0.14 -0.096 0.0959"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="ORIENT_RIGHT_FRONT_LINK" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.5236"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="WHEEL_RIGHT_FRONT_LINK">
+    <inertial>
+      <origin
+        xyz="7.5765E-06 0.027483 1.1972E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.29567" />
+      <inertia
+        ixx="0.00031004"
+        ixy="2.3685E-09"
+        ixz="-1.6256E-08"
+        iyy="0.0005043"
+        iyz="3.4764E-09"
+        izz="0.00031012" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/WHEEL_RIGHT_FRONT_LINK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/WHEEL_RIGHT_FRONT_LINK.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="WHEEL_RIGHT_FRONT_JOINT"
+    type="continuous">
+    <origin
+      xyz="0 -0.0690016176085785 -0.101200000000001"
+      rpy="0 0 0" />
+    <parent
+      link="ORIENT_RIGHT_FRONT_LINK" />
+    <child
+      link="WHEEL_RIGHT_FRONT_LINK" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="ORIENT_RIGHT_BACK_LINK">
+    <inertial>
+      <origin
+        xyz="0 0.0099854 -0.059895"
+        rpy="0 0 0" />
+      <mass
+        value="0.068757" />
+      <inertia
+        ixx="3.9839E-05"
+        ixy="5.7144E-22"
+        ixz="-1.2696E-21"
+        iyy="3.3827E-05"
+        iyz="-4.6998E-06"
+        izz="1.4125E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/ORIENT_RIGHT_BACK_LINK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/ORIENT_RIGHT_BACK_LINK.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ORIENT_RIGHT_BACK_JOINT"
+    type="revolute">
+    <origin
+      xyz="-0.14 -0.096 0.0959"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="ORIENT_RIGHT_BACK_LINK" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0.5236"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="WHEEL_RIGHT_BACK_LINK">
+    <inertial>
+      <origin
+        xyz="7.5771E-06 0.027483 1.198E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.29567" />
+      <inertia
+        ixx="0.00031004"
+        ixy="2.3721E-09"
+        ixz="-1.6252E-08"
+        iyy="0.0005043"
+        iyz="3.4814E-09"
+        izz="0.00031012" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/WHEEL_RIGHT_BACK_LINK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jrs_urdf_20251215/meshes/WHEEL_RIGHT_BACK_LINK.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="WHEEL_RIGHT_BACK_JOINT"
+    type="continuous">
+    <origin
+      xyz="0 -0.0690016176085785 -0.101199999999999"
+      rpy="0 0 0" />
+    <parent
+      link="ORIENT_RIGHT_BACK_LINK" />
+    <child
+      link="WHEEL_RIGHT_BACK_LINK" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+</robot>

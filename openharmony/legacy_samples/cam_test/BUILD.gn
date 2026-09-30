@@ -1,0 +1,18 @@
+import("//build/ohos.gni")
+import("//build/ohos/ndk/ndk.gni")
+
+config("warns") {
+  cflags = [ "-Werror" ]
+}
+
+ohos_executable("USB_CAM") {
+  install_enable = true
+  sources = [
+    "camera.c",
+    "main.c",
+  ]
+
+  configs = [ ":warns" ]
+  install_images = [ "system" ]
+  part_name = "my_samples"
+}

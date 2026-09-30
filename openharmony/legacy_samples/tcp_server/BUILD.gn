@@ -1,0 +1,24 @@
+import("//build/ohos.gni")
+import("//build/ohos/ndk/ndk.gni")
+
+config("warns") {
+  cflags = [ "-Werror" ]
+}
+
+ohos_executable("tcp_server") {
+  install_enable = true
+
+  sources = [
+    "server.cpp"
+  ]
+  include_dirs = [ "//commonlibrary/c_utils/base/include",
+  "//mysubsys/ohos_car/oh_car" ]
+  configs = [ ":warns" ]
+  external_deps = [
+    "c_utils:utils",
+    #"hiviewdfx_hilog_native:libhilog",
+  ]
+
+  install_images = [ "system" ]
+  part_name = "my_samples"
+}

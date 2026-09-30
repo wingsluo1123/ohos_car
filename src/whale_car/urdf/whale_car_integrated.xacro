@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="whale_car_integrated">
+
+  <!-- 包含JRS_URDF_20251215的宏定义或直接内容 -->
+  <!-- 由于原文件是纯URDF，我们这里直接引用它的mesh文件来构建 -->
+  
+  <!-- ==================== 基础结构定义 ==================== -->
+  
+  <!-- base_footprint: 地面投影点 -->
+  <link name="base_footprint"/>
+  
+  <!-- base_link: 机器人主体 -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.0054998 0.00070291 0.059205" rpy="0 0 0" />
+      <mass value="3.5886" />
+      <inertia ixx="0.014112" ixy="-7.4583E-07" ixz="1.0616E-05" iyy="0.019988" iyz="-4.2557E-06" izz="0.032931" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jrs_urdf_20251215/meshes/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jrs_urdf_20251215/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 连接 base_footprint 和 base_link -->
+  <!-- 假设base_link的原点在底盘中心，高度需要根据实际模型调整 -->
+  <!-- 原简单模型中base_link高0.09m，这里先保持一致，后续可能需要微调 -->
+  <joint name="base_footprint_to_base_link" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.090" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ==================== 车轮与转向结构 (从原URDF迁移) ==================== -->
+  <!-- 这里简化处理，直接包含原URDF中的关键部件 -->
+  <!-- 注意：原URDF中有转向结构(ORIENT_LINK)，这里保留以保持模型完整性 -->
+
+  <!-- 左前转向节 -->
+  <link name="ORIENT_LEFT_FRONT_LINK">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jrs_urdf_20251215/meshes/ORIENT_LEFT_FRONT_LINK.STL" />
+      </geometry>
+      <material name=""><color rgba="0.79216 0.81961 0.93333 1" /></material>
+    </visual>
+  </link>
+  <joint name="ORIENT_LEFT_FRONT_JOINT" type="fixed">
+    <origin xyz="0.14 0.096 0.0959" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="ORIENT_LEFT_FRONT_LINK" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <!-- 左前轮 -->
+  <link name="WHEEL_LEFT_FRONT_LINK">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jrs_urdf_20251215/meshes/WHEEL_LEFT_FRONT_LINK.STL" />
+      </geometry>
+      <material name=""><color rgba="0.75294 0.75294 0.75294 1" /></material>
+    </visual>
+  </link>
+  <joint name="WHEEL_LEFT_FRONT_JOINT" type="continuous">
+    <origin xyz="0 0.069002 -0.1012" rpy="0 0 0" />
+    <parent link="ORIENT_LEFT_FRONT_LINK" />
+    <child link="WHEEL_LEFT_FRONT_LINK" />
+    <axis xyz="0 -1 0" />
+  </joint>
+
+  <!-- 右前转向节 -->
+  <link name="ORIENT_RIGHT_FRONT_LINK">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jrs_urdf_20251215/meshes/ORIENT_RIGHT_FRONT_LINK.STL" />
+      </geometry>
+      <material name=""><color rgba="0.79216 0.81961 0.93333 1" /></material>
+    </visual>
+  </link>
+  <joint name="ORIENT_RIGHT_FRONT_JOINT" type="fixed">
+    <origin xyz="0.14 -0.096 0.0959" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="ORIENT_RIGHT_FRONT_LINK" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <!-- 右前轮 -->
+  <link name="WHEEL_RIGHT_FRONT_LINK">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jrs_urdf_20251215/meshes/WHEEL_RIGHT_FRONT_LINK.STL" />
+      </geometry>
+      <material name=""><color rgba="0.75294 0.75294 0.75294 1" /></material>
+    </visual>
+  </link>
+  <joint name="WHEEL_RIGHT_FRONT_JOINT" type="continuous">
+    <origin xyz="0 -0.069002 -0.1012" rpy="0 0 0" />
+    <parent link="ORIENT_RIGHT_FRONT_LINK" />
+    <child link="WHEEL_RIGHT_FRONT_LINK" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- 左后转向节 -->
+  <link name="ORIENT_LEFT_BACK_LINK">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jrs_urdf_20251215/meshes/ORIENT_LEFT_BACK_LINK.STL" />
+      </geometry>
+      <material name=""><color rgba="0.79216 0.81961 0.93333 1" /></material>
+    </visual>
+  </link>
+  <joint name="ORIENT_LEFT_BACK_JOINT" type="fixed">
+    <origin xyz="-0.14 0.096 0.0959" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="ORIENT_LEFT_BACK_LINK" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <!-- 左后轮 -->
+  <link name="WHEEL_LEFT_BACK_LINK">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jrs_urdf_20251215/meshes/WHEEL_LEFT_BACK_LINK.STL" />
+      </geometry>
+      <material name=""><color rgba="0.75294 0.75294 0.75294 1" /></material>
+    </visual>
+  </link>
+  <joint name="WHEEL_LEFT_BACK_JOINT" type="continuous">
+    <origin xyz="0 0.069002 -0.1012" rpy="0 0 0" />
+    <parent link="ORIENT_LEFT_BACK_LINK" />
+    <child link="WHEEL_LEFT_BACK_LINK" />
+    <axis xyz="0 -1 0" />
+  </joint>
+
+  <!-- 右后转向节 -->
+  <link name="ORIENT_RIGHT_BACK_LINK">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jrs_urdf_20251215/meshes/ORIENT_RIGHT_BACK_LINK.STL" />
+      </geometry>
+      <material name=""><color rgba="0.79216 0.81961 0.93333 1" /></material>
+    </visual>
+  </link>
+  <joint name="ORIENT_RIGHT_BACK_JOINT" type="fixed">
+    <origin xyz="-0.14 -0.096 0.0959" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="ORIENT_RIGHT_BACK_LINK" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <!-- 右后轮 -->
+  <link name="WHEEL_RIGHT_BACK_LINK">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jrs_urdf_20251215/meshes/WHEEL_RIGHT_BACK_LINK.STL" />
+      </geometry>
+      <material name=""><color rgba="0.75294 0.75294 0.75294 1" /></material>
+    </visual>
+  </link>
+  <joint name="WHEEL_RIGHT_BACK_JOINT" type="continuous">
+    <origin xyz="0 -0.069002 -0.1012" rpy="0 0 0" />
+    <parent link="ORIENT_RIGHT_BACK_LINK" />
+    <child link="WHEEL_RIGHT_BACK_LINK" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- ==================== 传感器定义 ==================== -->
+  
+  <!-- laser_link: 激光雷达坐标系 -->
+  <link name="laser_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <!-- 雷达可视化为圆柱体 -->
+        <cylinder radius="0.05" length="0.06"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.2 0.2 0.8"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.06"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- base_link到laser_link的变换 -->
+  <!-- 雷达在底盘正中心水平位置，距离底盘顶部90mm -->
+  <!-- 底盘顶部相对base_link高度: 180mm/2 = 90mm -->
+  <!-- 雷达相对base_link高度: 90mm(到顶部) + 90mm(顶部向上) = 180mm -->
+  <!-- 雷达反向安装：绕z轴旋转180度(pi弧度) -->
+  <joint name="base_link_to_laser" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser_link"/>
+    <origin xyz="0 0 0.180" rpy="3.14159265359 0 3.14159265359"/>
+  </joint>
+
+  <link name="imu_link"/>
+  <joint name="base_link_to_imu" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0 0 0.090" rpy="0 0 -1.57079632679"/>
+  </joint>
+
+</robot>

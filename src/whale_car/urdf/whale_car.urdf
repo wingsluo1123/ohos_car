@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<robot name="whale_car">
+  
+  <!-- 机器人底盘参数 -->
+  <!-- 长度: 460mm, 宽度: 335mm, 高度: 180mm -->
+  
+  <!-- ==================== 坐标系定义 ==================== -->
+  
+  <!-- base_footprint: 地面投影点，机器人与地面的接触中心 -->
+  <link name="base_footprint">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.01 0.01 0.001"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 0.5"/>
+      </material>
+    </visual>
+  </link>
+  
+  <!-- base_link: 机器人几何中心，位于底盘中心高度 -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <!-- 底盘主体: 460mm x 335mm x 180mm -->
+        <box size="0.460 0.335 0.180"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.2 0.5 0.8 0.8"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.460 0.335 0.180"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="6.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+    </inertial>
+  </link>
+  
+  <!-- base_footprint到base_link的变换 -->
+  <!-- base_link位于底盘几何中心，高度为底盘高度的一半: 180mm/2 = 90mm -->
+  <joint name="base_footprint_to_base_link" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.090" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- laser_link: 激光雷达坐标系 -->
+  <link name="laser_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <!-- 雷达可视化为圆柱体 -->
+        <cylinder radius="0.05" length="0.06"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.2 0.2 0.8"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.06"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+  
+  <!-- base_link到laser_link的变换 -->
+  <!-- 雷达在底盘正中心水平位置，距离底盘顶部90mm -->
+  <!-- 底盘顶部相对base_link高度: 180mm/2 = 90mm -->
+  <!-- 雷达相对base_link高度: 90mm(到顶部) + 90mm(顶部向上) = 180mm -->
+  <!-- 雷达反向安装：绕x轴旋转180度(pi弧度) + 绕z轴旋转180度 -->
+  <!-- rpy="roll pitch yaw" = rpy="π 0 π" 实现Y轴镜像和X轴反向 -->
+  <joint name="base_link_to_laser" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser_link"/>
+    <origin xyz="0 0 0.180" rpy="3.14159265359 0 3.14159265359"/>
+  </joint>
+  
+  <!-- ==================== 车轮定义 ==================== -->
+  <!-- 用于可视化，实际运动由里程计节点控制 -->
+  
+  <!-- 左前轮 -->
+  <link name="left_front_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.0675" length="0.05"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <joint name="left_front_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_front_wheel"/>
+    <!-- 轴距280mm/2=140mm, 轮距280mm/2=140mm -->
+    <origin xyz="0.140 0.140 -0.090" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  
+  <!-- 右前轮 -->
+  <link name="right_front_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.0675" length="0.05"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <joint name="right_front_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_front_wheel"/>
+    <origin xyz="0.140 -0.140 -0.090" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  
+  <!-- 左后轮 -->
+  <link name="left_back_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.0675" length="0.05"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <joint name="left_back_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_back_wheel"/>
+    <origin xyz="-0.140 0.140 -0.090" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  
+  <!-- 右后轮 -->
+  <link name="right_back_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.0675" length="0.05"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <joint name="right_back_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_back_wheel"/>
+    <origin xyz="-0.140 -0.140 -0.090" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  
+</robot>

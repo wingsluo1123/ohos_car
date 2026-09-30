@@ -1,0 +1,16 @@
+import("//build/ohos.gni")
+import("//build/ohos/ndk/ndk.gni")
+
+config("warns") {
+  cflags = [ "-Werror" ]
+}
+
+ohos_executable("hello_sample") {
+  install_enable = true
+
+  sources = [
+    "hello.c"
+  ]
+  install_images = [ "system" ]
+  part_name = "my_samples"
+}

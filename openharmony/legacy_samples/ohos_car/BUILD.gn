@@ -1,0 +1,23 @@
+import("//build/ohos.gni")
+import("//build/ohos/ndk/ndk.gni")
+
+config("warns") {
+  cflags = [ "-Werror" ]
+}
+
+ohos_executable("test_serial") {
+  install_enable = true
+
+  sources = [
+    "pthread_usr.c",
+    "serial_base.c",
+    "serial_protocol.c",
+    "serial.c",
+    "wit_c_sdk.c",
+    "main.c",
+    "controller.c"
+  ]
+
+  install_images = [ "system" ]
+  part_name = "my_samples"
+}

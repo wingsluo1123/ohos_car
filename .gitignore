@@ -1,0 +1,16 @@
+/build/
+/devel/
+/install/
+/log/
+/build_ros2/
+/install_ros2/
+/log_ros2/
+/.vscode/
+/ohos_car/
+__pycache__/
+*.pyc
+*:Zone.Identifier
+openharmony/**/out/
+openharmony/**/test_serial
+/frames.gv
+/frames.pdf
